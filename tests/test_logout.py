@@ -1,12 +1,10 @@
 import pytest
 import time
-from helper.helper_login import helper_login
+from helper.helper_open_menu_and_click import open_menu_and_click
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 # pytest fixture 설정
 @pytest.fixture
@@ -24,17 +22,6 @@ def driver():
 
 # 테스트 코드
 def test_logout(driver):
-  # 로그인
+  open_menu_and_click(driver,"logout_sidebar_link")
   
-
-  # 메뉴 열고 로그아웃
-  driver.find_element(By.ID,"react-burger-menu-btn").click()
-
-  # '로그아웃' 버튼이 클릭 가능한 상태가 될 때까지 기다리지 않으면 에러가 발생함
-  WebDriverWait(driver, 5).until(
-      EC.element_to_be_clickable((By.ID, "logout_sidebar_link"))
-  )
-
-  driver.find_element(By.ID,"logout_sidebar_link").click()
-
-  assert "saucedemo.com" in driver.current_url
+  assert "https://www.saucedemo.com/" in driver.current_url
