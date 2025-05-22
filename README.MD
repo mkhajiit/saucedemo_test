@@ -7,13 +7,13 @@
 
 ## 📂 프로젝트 개요
 
-SauceDemo 사이트를 대상으로 로그인, 로그아웃 등 주요 기능에 대해 Selenium을 이용해 자동화 테스트를 진행합니다.
+SauceDemo 사이트를 대상으로 로그인, 로그아웃 등 주요 기능에 대해 작성한 테스트 케이스를 토대로 Selenium을 이용해 자동화 테스트를 진행합니다.
 
 ---
 
 ## 🐞 문제 상황 및 해결 과정
 
-### 문제 발생
+### 1번 문제
 
 `test_logout.py` 파일에서 로그아웃 테스트 중 다음과 같은 에러가 발생하였습니다:
 selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable

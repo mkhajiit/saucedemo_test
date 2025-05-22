@@ -1,5 +1,6 @@
 import pytest
 import time
+from helper.helper_login import helper_login
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -23,12 +24,8 @@ def driver():
 
 # 테스트 코드
 def test_logout(driver):
-  driver.get("https://www.saucedemo.com/")
-
   # 로그인
-  driver.find_element(By.ID,"user-name").send_keys("standard_user")
-  driver.find_element(By.ID, "password").send_keys("secret_sauce")
-  driver.find_element(By.ID, "login-button").click()
+  
 
   # 메뉴 열고 로그아웃
   driver.find_element(By.ID,"react-burger-menu-btn").click()
