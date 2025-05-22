@@ -1,5 +1,4 @@
 import pytest
-import time
 from helper.helper_open_menu_and_click import open_menu_and_click
 from helper.helper_login import helper_login
 from selenium import webdriver
@@ -12,7 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 @pytest.fixture
 def driver():
   options = webdriver.ChromeOptions()
-  # options.add_argument("--headless")  
+  options.add_argument("--headless")  
   options.add_argument("--no-sandbox") 
   options.add_argument("--disable-dev-shm-usage") 
 
@@ -27,7 +26,6 @@ def driver():
 def test_navigation_all_items(driver): # all items 선택
   helper_login(driver,"standard_user","secret_sauce")
   open_menu_and_click(driver,"inventory_sidebar_link")
-  time.sleep(2)
 
   assert "/inventory.html" in driver.current_url
 
@@ -35,19 +33,16 @@ def test_navigation_about(driver): # about 선택
   helper_login(driver,"standard_user","secret_sauce")
   open_menu_and_click(driver,"about_sidebar_link")
 
-  time.sleep(2)
-
   assert "saucelabs.com" in driver.current_url
 
-def test_navigation_reset_app_state(driver): # reset_app_state 선택
+@pytest.mark.xfail(reason="일부러 실패하도록 설계된 테스트입니다.")
+def test_navigation_reset_app_state(driver): # reset_app_state 선택(일부러 실패하도록 구성한 테스트 케이스)
   helper_login(driver,"standard_user","secret_sauce")
 
   driver.find_element(By.ID,"add-to-cart-sauce-labs-bike-light").click()
   driver.find_element(By.ID,"add-to-cart-sauce-labs-backpack").click()
 
   open_menu_and_click(driver,"reset_sidebar_link")
-
-  time.sleep(2)
 
   # 목록에 있는 클래스 버튼들의 클래스명이 btn btn_primary btn_small btn_inventory 가 아닌게 있으면 안된다를 조건으로 걸기
   expected_class = "btn btn_primary btn_small btn_inventory"
@@ -56,6 +51,14 @@ def test_navigation_reset_app_state(driver): # reset_app_state 선택
   for btn in buttons:
     actual_class = btn.get_attribute("class")
     assert actual_class == expected_class, f"클래스명이 다릅니다: {actual_class}"
-  
 
+@pytest.mark.xfail(reason="일부러 실패하도록 설계된 테스트입니다.")
+def test_navigation_swag_labs(driver): # swag_labs 클릭(일부러 실패하도록 구성한 테스트 케이스)
+  helper_login(driver,"standard_user","secret_sauce")
+  driver.find_element(By.CLASS_NAME,"app_logo").click()
+
+  try:
+    assert "/home.html" in driver.current_url
+  except AssertionError as e:
+    raise AssertionError(f"[홈 화면이 아닙니다]에러 메시지: {e}.")
   
