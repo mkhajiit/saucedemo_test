@@ -1,7 +1,7 @@
 # 🧪 SauceDemo 자동화 테스트 프로젝트
 
-- **테스트 대상**: [https://www.saucedemo.com/](https://www.saucedemo.com/)
-- **사용 기술**: Python, Selenium, Pytest
+- 테스트 대상: [https://www.saucedemo.com/](https://www.saucedemo.com/)
+- 사용 기술: Python, Selenium, Pytest
 
 ---
 
@@ -37,7 +37,8 @@ WebDriverWait(driver, 5).until(
 )
 ```
 
-📘 코드 상세 설명
+### 코드 상세 설명
+
 • WebDriverWait(driver, 5)
 
     • driver: Selenium WebDriver 인스턴스
