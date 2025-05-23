@@ -109,4 +109,4 @@ headless 없이 브라우저를 띄워서 테스트할때 크롬 비밀번호 �
 ### 5번 문제
 
 headless 모드 일때만 에러가 발생하는 문제
-Selenium의 불안정한 headless 모드 문제 playwright 학습하자
+Selenium의 불안정한 headless 모드 문제 playwright 학습하기
