@@ -2,6 +2,7 @@
 
 - 테스트 대상: [https://www.saucedemo.com/](https://www.saucedemo.com/)
 - 사용 기술: Python, Selenium, Pytest, GitHub Actions
+- 테스트 케이스: [https://docs.google.com/spreadsheets/d/1nNzcqBv1qN7VlSQqsKxXrpA0jA4uao-e/edit?usp=sharing&ouid=109584807367731844865&rtpof=true&sd=true](https://docs.google.com/spreadsheets/d/1nNzcqBv1qN7VlSQqsKxXrpA0jA4uao-e/edit?usp=sharing&ouid=109584807367731844865&rtpof=true&sd=true)
 
 ---
 
@@ -125,7 +126,7 @@ headless 모드 일때만 에러가 발생하는 문제
 
 - headless 모드 대신 Playwright 등 다른 도구 학습 및 적용 검토
 
-### 마무리
+## 마무리
 
 - GitHub Actions를 활용했지만, 로컬에서 잘 돌아가는 테스트가  
   다른 리눅스 웹 환경에서는 동작하지 않아 디버깅이 매우 어려웠습니다.
