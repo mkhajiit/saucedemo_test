@@ -12,7 +12,8 @@ def driver():
   options.add_argument("--headless")  # 창 안 띄우고 백그라운드에서 실행
   options.add_argument("--no-sandbox") # 보안 격리 기능(sandbox)을 끈다
   options.add_argument("--disable-dev-shm-usage") # /dev/shm 대신 일반 디스크를 사용하게 해서 안정성이 높아진다
-
+  options.add_argument("--window-size=1920,1080")
+  
   # ChromeDriver 자동 설치
   service = Service(ChromeDriverManager().install())
   driver = webdriver.Chrome(service=service, options=options)
