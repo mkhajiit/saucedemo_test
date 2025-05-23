@@ -1,5 +1,4 @@
 import pytest
-import time
 from helper.helper_login import helper_login
 from helper.helper_add_to_cart import add_to_cart
 from selenium import webdriver
@@ -16,7 +15,7 @@ def driver():
 
   options.add_argument("--headless")  
   options.add_argument("--no-sandbox") 
-  options.add_argument("--disable-dev-shm-usage") 
+  options.add_argument("--disable-dev-shm-usage")
 
   # ChromeDriver 자동 설치
   service = Service(ChromeDriverManager().install())
@@ -47,21 +46,13 @@ def test_cart_remove_from_cart(driver): # 장바구니 상품 제거 테스트
   helper_login(driver,"standard_user","secret_sauce")
   add_to_cart(driver,selected_items)
 
-  for button_id, _ in selected_items:
-    # add-to-cart를 remove로 바꿈 (원본 리스트 변경 없음)
-    remove_button_id = button_id.replace("add-to-cart","remove")
-    remove_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.ID, remove_button_id))
-    )
-    remove_button.click()
-
-  # wait = WebDriverWait(driver, 10)
-  # btn = wait.until(EC.element_to_be_clickable((By.ID, "remove-sauce-labs-backpack")))
-  # btn.click()
+  wait = WebDriverWait(driver, 10)
+  btn = wait.until(EC.element_to_be_clickable((By.ID, "remove-sauce-labs-backpack")))
+  btn.click()
 
   assert not driver.find_elements(By.ID,"remove-sauce-labs-backpack"),"아직 제품이 카트에 남아있습니다."
 
-def test_cart_checkout_empty(driver):
+def test_cart_checkout_empty(driver): # 미입력으로 checkout
   helper_login(driver,"standard_user","secret_sauce")
   add_to_cart(driver,selected_items)
 
@@ -83,4 +74,3 @@ def test_cart_checkout_empty(driver):
   
   error_text = error_container.find_element(By.TAG_NAME, "h3").text
   assert error_text == "Error: First Name is required"
-  
