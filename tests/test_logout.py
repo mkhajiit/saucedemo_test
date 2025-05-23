@@ -1,10 +1,13 @@
 import pytest
 import time
+from helper.helper_login import helper_login
 from helper.helper_open_menu_and_click import open_menu_and_click
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # pytest fixture 설정
 @pytest.fixture
@@ -22,6 +25,7 @@ def driver():
 
 # 테스트 코드
 def test_logout(driver):
+  helper_login(driver,"standard_user","secret_sauce")
   open_menu_and_click(driver,"logout_sidebar_link")
   
   assert "https://www.saucedemo.com/" in driver.current_url
