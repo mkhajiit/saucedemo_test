@@ -1,5 +1,4 @@
 import pytest
-import time
 from helper.helper_login import helper_login
 from selenium import webdriver
 from selenium.webdriver.common.by import By

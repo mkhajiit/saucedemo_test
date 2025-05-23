@@ -51,6 +51,7 @@ def test_navigation_reset_app_state(driver): # reset_app_state 선택(일부러 
   for btn in buttons:
     actual_class = btn.get_attribute("class")
     assert actual_class == expected_class, f"클래스명이 다릅니다: {actual_class}"
+# 에러 발생: all items 목록에서는 reset이 발생하지 않았음
 
 @pytest.mark.xfail(reason="일부러 실패하도록 설계된 테스트입니다.")
 def test_navigation_swag_labs(driver): # swag_labs 클릭(일부러 실패하도록 구성한 테스트 케이스)
@@ -61,4 +62,4 @@ def test_navigation_swag_labs(driver): # swag_labs 클릭(일부러 실패하도
     assert "/home.html" in driver.current_url
   except AssertionError as e:
     raise AssertionError(f"[홈 화면이 아닙니다]에러 메시지: {e}.")
-  
+# 에러 발생: 로고를 클릭해도 링크가 없어서 home 화면으로 이동하지 않음(home 화면이 미구현 되어 있음)
