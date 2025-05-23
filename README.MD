@@ -1,7 +1,7 @@
 # 🧪 SauceDemo 자동화 테스트 프로젝트
 
 - 테스트 대상: [https://www.saucedemo.com/](https://www.saucedemo.com/)
-- 사용 기술: Python, Selenium, Pytest
+- 사용 기술: Python, Selenium, Pytest, GitHub Actions
 
 ---
 
@@ -18,12 +18,12 @@ SauceDemo 사이트를 대상으로 로그인, 로그아웃 등 주요 기능에
 `test_logout.py` 파일에서 로그아웃 테스트 중 다음과 같은 에러가 발생하였습니다:
 selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
 
-### 원인
+#### 원인
 
 - 메뉴가 완전히 열리기 전에 로그아웃 버튼을 클릭하려 하여 에러 발생.
 - 요소가 렌더링되기 전이거나 애니메이션이 끝나기 전이라 상호작용할 수 없는 상태였음.
 
-### 해결 방법
+#### 해결 방법
 
 - 요소가 **클릭 가능한 상태가 될 때까지 대기**하도록 `WebDriverWait`을 사용하여 수정함.
 
@@ -37,7 +37,7 @@ WebDriverWait(driver, 5).until(
 )
 ```
 
-### 코드 상세 설명
+#### 코드 상세 설명
 
 • WebDriverWait(driver, 5)
 
@@ -68,12 +68,12 @@ WebDriverWait(driver, 5).until(
 `test_navigation.py` 파일에서 네비게이션 메뉴 테스트 중 에러가 발생:
 햄버거 메뉴를 클릭 이후 다음 클릭부터 작동을 하지 않는 문제
 
-### 원인
+#### 원인
 
 - 사이드 메뉴 내부 항목들은 보이는 것 같아도, CSS 애니메이션(transform)이 끝나기 전까지는 물리적으로 클릭할 수 없는 상태이기 때문
 - Selenium은 이런 "보이지만, 클릭 불가능한 위치"를 검사하지 않기 때문에, 결국 .click()이 실패하거나 무시되게 됩니다.
 
-### 해결 방법
+#### 해결 방법
 
 - 요소가 **클릭 가능한 상태가 될 때까지 대기**하도록 `WebDriverWait`을 사용하고 driver.execute_script 로 자바스크립트로 강제 클릭을 해서 해결
 
@@ -88,7 +88,7 @@ driver.execute_script("arguments[0].click();", menu_link)
 
 ```
 
-### 코드 상세 설명
+#### 코드 상세 설명
 
 • driver.execute_script("arguments[0].click();", element)
 
